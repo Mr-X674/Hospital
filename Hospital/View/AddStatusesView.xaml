@@ -1,0 +1,77 @@
+﻿<Window x:Class="Hospital.View.AddStatusesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View" xmlns:viewmodel="clr-namespace:Hospital.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateStatusesViewModel}"
+        mc:Ignorable="d"
+        Title="AddStatusesView" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/> 
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Доктор" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" FontSize="20"/>
+        <Label Content="Пациент" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" FontSize="20"/>
+        <Label Content="Документ" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" FontSize="20"/>
+        <Label Content="Статус" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" FontSize="20"/>
+        <Label Content="От" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" FontSize="20"/>
+        <Label Content="До" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" FontSize="20"/>
+
+        <ComboBox ItemsSource="{Binding Doctors}" SelectedValue="{Binding SelectDoctor}" Grid.Row="0" Grid.Column="1" Margin="5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Surname}" FontSize="20"/>
+                        <TextBlock Text=" " FontSize="20"/>
+                        <TextBlock Text="{Binding Name}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox ItemsSource="{Binding Patients}" SelectedValue="{Binding SelectPatient}" Grid.Row="1" Grid.Column="1" Margin="5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Surname}" FontSize="20"/>
+                        <TextBlock Text=" " FontSize="20"/>
+                        <TextBlock Text="{Binding Name}" FontSize="20"/>
+                        <TextBlock Text=" " FontSize="20"/>
+                        <TextBlock Text="{Binding Patronymic}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox ItemsSource="{Binding Documents}" SelectedValue="{Binding SelectDocument}" Grid.Row="2" Grid.Column="1" Margin="5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Type}" FontSize="20"/>
+                        <TextBlock Text=" " FontSize="20"/>
+                        <TextBlock Text="{Binding Diagnosis}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBox Text="{Binding Statuses.DisabilityStatus}" FontSize="20" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <DatePicker Grid.Row="4" Grid.Column="1" FontSize="20" SelectedDate="{Binding Statuses.DateStart}" SelectedDateFormat="Short" Margin="5"/>
+        <DatePicker Grid.Row="5" Grid.Column="1" FontSize="20" SelectedDate="{Binding Statuses.DateEnd2}" SelectedDateFormat="Short" Margin="5"/>
+
+        <Button Content="Добавить" Command="{Binding AddCommand}" FontSize="20" Grid.Row="6" Grid.ColumnSpan="2" Margin="5"/>
+    </Grid>
+</Window>

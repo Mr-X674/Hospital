@@ -1,0 +1,53 @@
+﻿<Window x:Class="Hospital.View.AddUserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.View" xmlns:viewmodel="clr-namespace:Hospital.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddUpdateUserViewModel}"
+        mc:Ignorable="d"
+        Title="AddUserView" Height="350" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Доктор" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Роль" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Логин" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Пароль" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20"/>
+
+        <ComboBox ItemsSource="{Binding Doctors}" SelectedValue="{Binding SelectDoctor}" Margin="5" Grid.Row="0" Grid.Column="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Surname}" FontSize="20"/>
+                        <TextBlock Text=" " FontSize="20"/>
+                        <TextBlock Text="{Binding Name}" FontSize="20"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox ItemsSource="{Binding Roles}" SelectedValue="{Binding SelectRoles}" Margin="5" Grid.Row="1" Grid.Column="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" FontSize="20"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBox Text="{Binding User.Login}" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="5"/>
+        <TextBox Text="{Binding User.Password}" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="5"/>
+
+        <Button Content="Добавить" Command="{Binding AddCommand}" FontSize="20" Grid.Row="4" Grid.ColumnSpan="2" Margin="5"/>
+    </Grid>
+</Window>
